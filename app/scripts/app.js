@@ -9,25 +9,15 @@
  * Main module of the application.
  */
 angular
-  .module('angularTableApp', [
-    'ngAnimate',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  .module('angularTableApp', ['ui.router'])
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/home');
+    $stateProvider
+    .state('home', {
+        url: '/home',
+        templateUrl: 'views/partial-home.html'
+    })
+    .state('about', {
+        // we'll get to this in a bit       
+    });
   });
